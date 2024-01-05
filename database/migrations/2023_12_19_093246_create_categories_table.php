@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->text('name');
+            $table->foreignId('team_id')->index();
             $table->integer('ordering')->default(1);
             $table->boolean('is_active')->default(1);
             $table->text('description')->nullable();

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('form_id')->constrained('forms');
             $table->foreignId('field_id')->constrained('fields');
+            $table->foreignId('team_id')->index();
             $table->foreignId('response_id')->constrained('responses');
             $table->longText('response');
             $table->timestamps();

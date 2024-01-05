@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('collections', function (Blueprint $table) {
             $table->id();
             $table->text('name');
+            $table->foreignId('team_id')->index();
             $table->longText('values')->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -23,14 +23,14 @@ return [
      * ->skyModels([ ... ])
      */
     'models' => [
-        'Category' => \LaraZeus\Bolt\Models\Category::class,
-        'Collection' => \LaraZeus\Bolt\Models\Collection::class,
-        'Field' => \LaraZeus\Bolt\Models\Field::class,
-        'FieldResponse' => \LaraZeus\Bolt\Models\FieldResponse::class,
-        'Form' => \LaraZeus\Bolt\Models\Form::class,
+        'Category' => \App\Models\Zeus\Category::class,
+        'Collection' => \App\Models\Zeus\Collection::class,
+        'Field' => \App\Models\Zeus\Field::class,
+        'FieldResponse' => \App\Models\Zeus\FieldResponse::class,
+        'Form' => \App\Models\Zeus\Form::class,
         'FormsStatus' => \LaraZeus\Bolt\Models\FormsStatus::class,
-        'Response' => \LaraZeus\Bolt\Models\Response::class,
-        'Section' => \LaraZeus\Bolt\Models\Section::class,
+        'Response' => \App\Models\Zeus\Response::class,
+        'Section' => \App\Models\Zeus\Section::class,
     ],
 
     'defaultMailable' => \LaraZeus\Bolt\Mail\FormSubmission::class,

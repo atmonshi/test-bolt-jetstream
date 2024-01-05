@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
             $table->foreignId('form_id')->constrained('forms');
+            $table->foreignId('team_id')->index();
             $table->text('name')->nullable();
             $table->integer('ordering')->default(1);
             $table->integer('columns')->default(1);
