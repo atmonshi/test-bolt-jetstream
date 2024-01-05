@@ -10,8 +10,15 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasTenants;
+use Filament\Panel;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Collection;
 
-class User extends Authenticatable
+
+class User extends Authenticatable implements FilamentUser, HasTenants
 {
     use HasApiTokens;
     use HasFactory;
@@ -58,4 +65,25 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function getTenants(Panel $panel): Collection
+    {
+        return $this->teams;
+    }
+
+    public function teams(): BelongsToMany
+    {
+        return $this->belongsToMany(Team::class);
+    }
+
+    public function canAccessTenant(Model $tenant): bool
+    {
+        return true;
+        return $this->teams->contains($tenant);
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return true;
+    }
 }

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('fields', function (Blueprint $table) {
             $table->id();
             $table->foreignId('section_id')->constrained('sections');
+            $table->foreignId('team_id')->index();
             $table->text('name');
             $table->text('description')->nullable();
             $table->string('type');

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('category_id')->nullable()->constrained('categories');
+            $table->foreignId('team_id')->index();
             $table->text('name');
             $table->text('description')->nullable();
             $table->string('slug');

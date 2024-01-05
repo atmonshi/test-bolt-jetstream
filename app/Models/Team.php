@@ -2,6 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Zeus\Category;
+use App\Models\Zeus\Collection;
+use App\Models\Zeus\Field;
+use App\Models\Zeus\FieldResponse;
+use App\Models\Zeus\Form;
+use App\Models\Zeus\Response;
+use App\Models\Zeus\Section;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Jetstream\Events\TeamCreated;
 use Laravel\Jetstream\Events\TeamDeleted;
@@ -41,4 +48,39 @@ class Team extends JetstreamTeam
         'updated' => TeamUpdated::class,
         'deleted' => TeamDeleted::class,
     ];
+
+    public function catogries()
+    {
+        return $this->hasMany(Category::class);
+    }
+
+    public function collections()
+    {
+        return $this->hasMany(Collection::class);
+    }
+
+    public function fields()
+    {
+        return $this->hasMany(Field::class);
+    }
+
+    public function FieldResponses()
+    {
+        return $this->hasMany(FieldResponse::class);
+    }
+
+    public function Forms()
+    {
+        return $this->hasMany(Form::class);
+    }
+
+    public function Responses()
+    {
+        return $this->hasMany(Response::class);
+    }
+
+    public function Sections()
+    {
+        return $this->hasMany(Section::class);
+    }
 }

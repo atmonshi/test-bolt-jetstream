@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Models\Team;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -25,6 +26,7 @@ class AdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->tenant(Team::class)
             ->default()
             ->id('admin')
             ->path('admin')
@@ -34,7 +36,17 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 SpatieLaravelTranslatablePlugin::make()->defaultLocales([config('app.locale')]),
-                BoltPlugin::make(),
+                BoltPlugin::make()
+                ->boltModels([
+                    'Category' => \App\Models\Zeus\Category::class,
+                    'Collection' => \App\Models\Zeus\Collection::class,
+                    'Field' => \App\Models\Zeus\Field::class,
+                    'FieldResponse' => \App\Models\Zeus\FieldResponse::class,
+                    'Form' => \App\Models\Zeus\Form::class,
+                    'FormsStatus' => \LaraZeus\Bolt\Models\FormsStatus::class,
+                    'Response' => \App\Models\Zeus\Response::class,
+                    'Section' => \App\Models\Zeus\Section::class,
+                ]),
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
